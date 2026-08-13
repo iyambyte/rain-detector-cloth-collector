@@ -1,0 +1,15 @@
+[Unit]
+Description=Cloth Collector Spring Boot Service
+After=syslog.target network.target mysql.service
+
+[Service]
+User=root
+WorkingDirectory=/var/www/clothcollector
+ExecStart=/usr/bin/java -jar /var/www/clothcollector/clothcollector-0.0.1-SNAPSHOT.jar --spring.config.name=application-prod
+SuccessExitStatus=143
+TimeoutStopSec=10
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
